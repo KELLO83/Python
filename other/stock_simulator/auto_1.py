@@ -5,6 +5,7 @@ basic_total = 100000
 basic_stock_price = 3000
 
 #test
+#2번째 수정.
 
 
 def entry():
