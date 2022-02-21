@@ -4,6 +4,8 @@ basic_count = 10
 basic_total = 100000
 basic_stock_price = 3000
 
+#test
+
 
 def entry():
 
