@@ -122,7 +122,20 @@ class SinglyLinkedList():
         del find
         
         return key
+     
+    def create_node(self,key,insert_Node_number):
+        new_node=Node(key)
+        find=self.head
+        previous=None
+        
+        for _ in range(int(insert_Node_number)):
+            previous=find
+            find=find.next
             
+        self.size+=1
+        new_node.next=find
+        previous.next=new_node
+               
 if __name__=="__main__":
     L=SinglyLinkedList()
     L.pushFront(-1)
@@ -135,5 +148,9 @@ if __name__=="__main__":
     L.pushback(200)
     L.delete_node(2)
     L.travel()
+    L.create_node(1000, 1)
+    L.travel()
+    
+    
     
     
