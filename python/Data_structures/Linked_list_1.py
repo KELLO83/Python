@@ -6,8 +6,10 @@ class Node(object):
     def __init__(self,key=None):
         self.key=key
         self.next=None
-    def __str__(self):
-        return str(self.key)
+    # def __str__(self):
+    #     return str(self.key)
+    # def __repr__(self):
+    #     return str(self.key)
     
 class SinglyLinkedList():
     def __init__(self):
@@ -135,7 +137,26 @@ class SinglyLinkedList():
         self.size+=1
         new_node.next=find
         previous.next=new_node
-               
+        
+    def search(self,key): 
+        
+        travel=self.head
+        while travel!=None:
+            if travel.key==key:
+                print("find key={}".format(travel.key))
+                return key
+            travel=travel.next
+        return None
+    
+    def __iterator__(self): #for+in+list =generate
+        v=self.head
+        
+        while v!=None:
+            yield v # generate yield 있는함수 yiled=return이랑 비슷
+            v=v.next
+        
+        
+                   
 if __name__=="__main__":
     L=SinglyLinkedList()
     L.pushFront(-1)
@@ -150,7 +171,11 @@ if __name__=="__main__":
     L.travel()
     L.create_node(1000, 1)
     L.travel()
+    L.search(4)
+    L.__iterator__()
     
+    for x in L.__iterator__():
+        print(x)
     
     
     
