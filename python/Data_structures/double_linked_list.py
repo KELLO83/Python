@@ -98,22 +98,41 @@ class double_linked_list():
             ap.next=bn
             bn.previous=ap
             temp=x_node.next
-            x_node.next=a_node
+            x_node.next=a_node #문제발생지점 >>>
             b_node.next=temp
             ap=x_node
             bn=xn
             xn.previous=b_node
+            x_node.next.previous=x_node #해결
             # ap.next=bn
             # b_node.next=x_node.next
             # x_node.next=a_node
             
   
             print("splice")
-            
-    def Move_After(self,a,x): #노드 a를 x다음으로 이동한다
-        self.splice(a,a)
+    def circle_check(self):
+        find=self.head
+        count=0
+        while find.next!=None:
+            print("{} Node Node_data {}".format(find.node_number,find.key))
+            count+=1
+            find=find.next
+            if count==20:
+                break
         
-            
+        print("circle check end")
+        print("\n") 
+    def circle_check_back(self):
+        find=self.head
+        count=0
+        while find.previous!=None:
+            print("{} Node Node_data {}".format(find.node_number,find.key))  
+            count+=1
+            find=find.previous
+            if count==20:
+                break
+        print("circle back check end")    
+        print("\n")
 if __name__=="__main__":
     link=double_linked_list()
     
@@ -126,9 +145,10 @@ if __name__=="__main__":
     link.pushFront(5000)
     link.delete_Node(3)
     link.detail()
-    link.splice(1, 3, 4) #처음시작 0번을 떄는것을 불가 수정필요...
-    print("\n")
+    link.splice(0, 3, 4) #처음시작 0번을 떄는것을 불가 수정필요... 수정완료
     link.detail()
+    link.circle_check()
+    link.circle_check_back() #BACK 이상 해결
 
 
     
