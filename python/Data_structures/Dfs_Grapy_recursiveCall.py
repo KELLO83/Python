@@ -66,7 +66,7 @@ class graph(object):
             if not self.visitde[u]:
                 self.dfs(u)
         
-                
+            
     def sequence_node(self):
         for i in self.sequence:
             print("{}->".format(i),end='')   
