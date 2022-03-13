@@ -108,8 +108,8 @@ class double_linked_list():
             # b_node.next=x_node.next
             # x_node.next=a_node
             
-  
             print("splice")
+  
     def circle_check(self):
         find=self.head
         count=0
@@ -133,6 +133,51 @@ class double_linked_list():
                 break
         print("circle back check end")    
         print("\n")
+    def move_after(self,move_node,standard_node):
+        find=self.head
+        find_standard=self.head
+        for _ in range(move_node):
+            find=find.next
+        for _ in range(standard_node):
+            find_standard=find_standard.next
+        print("move_node {} move_key {}".format(find.node_number,find.key))
+        print("standard_node {} standar key {} ".format(find_standard.node_number,find_standard.key))
+        fn=find.next
+        fp=find.previous
+        fsn=find_standard.next
+        fp.next=fn#옮기고자하는 노드의 그전노드의 다음을 옮기고자하느 노드의 그다음노드랑 연결시킨다
+        fn.previous=fp#위 사항의 백연결
+        find_standard.next=find #옮기는 노드를 내가 정한기준점의 노드 그다음에다가  갖다놓는다
+        find.previous=find_standard #위사항의 백연결
+        find.next=fsn
+        self.detail()
+    def move_before(self,move_node,standard_node):
+        find=self.head
+        find_standard=self.head
+        for _ in range(move_node):
+            find=find.next
+        for _ in range(standard_node):
+            find_standard=find_standard.next    
+        
+        print("move node {} move key {}".format(find.node_number,find.key))
+        print("standard_node {} standard key {}".format(find_standard.node_number,find.key))
+        fn=find.next #3번노드
+        fp=find.previous #1번노드
+        fsn=find_standard.next #5번노드
+        fp.next=fn
+        fn.previous=fp
+        find_standard.previous=find
+        find.next=find_standard
+        
+        self.detail()
+        
+        
+        
+        
+        
+  
+        
+        
 if __name__=="__main__":
     link=double_linked_list()
     
@@ -145,11 +190,12 @@ if __name__=="__main__":
     link.pushFront(5000)
     link.delete_Node(3)
     link.detail()
-    link.splice(0, 3, 4) #처음시작 0번을 떄는것을 불가 수정필요... 수정완료
-    link.detail()
-    link.circle_check()
-    link.circle_check_back() #BACK 이상 해결
-
+    # link.splice(0, 3, 4) #처음시작 0번을 떄는것을 불가 수정필요... 수정완료
+    # link.detail()
+    # link.circle_check()
+    # link.circle_check_back() #BACK 이상 해결
+    # link.move_after(2, 4)
+    link.move_before(2, 4)
 
     
     
