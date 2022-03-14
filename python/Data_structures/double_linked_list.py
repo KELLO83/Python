@@ -151,6 +151,7 @@ class double_linked_list():
         find.previous=find_standard #위사항의 백연결
         find.next=fsn
         self.detail()
+        
     def move_before(self,move_node,standard_node):
         find=self.head
         find_standard=self.head
@@ -161,16 +162,16 @@ class double_linked_list():
         
         print("move node {} move key {}".format(find.node_number,find.key))
         print("standard_node {} standard key {}".format(find_standard.node_number,find.key))
-        fn=find.next #3번노드
         fp=find.previous #1번노드
-        fsn=find_standard.next #5번노드
+        fn=find.next #3번노드
+        fsn=find_standard.next #6번노드
+        fsp=find_standard.previous#4번노드
         fp.next=fn
         fn.previous=fp
+        fsp.next=find
+        find.previous=fsp
         find_standard.previous=find
         find.next=find_standard
-        
-        self.detail()
-        
         
         
         
@@ -195,7 +196,12 @@ if __name__=="__main__":
     # link.circle_check()
     # link.circle_check_back() #BACK 이상 해결
     # link.move_after(2, 4)
-    link.move_before(2, 4)
+    link.move_before(0, 5)
+    link.circle_check()
+    link.circle_check_back()
+    
+    
+
 
     
     
