@@ -2,7 +2,6 @@
 #Node
 #circle list
 
-
 class Node():
     
     def __init__(self,key):
@@ -17,8 +16,7 @@ class double_linked_list():
     def __init__(self):
         self.head=None
         self.size=0
-        
-        
+            
     def __len__(self):
         return self.size
     
@@ -52,8 +50,19 @@ class double_linked_list():
             search=search.next
             
         print("delte target {} delete Node_key {}".format(search.node_number,search.key))
-           
-   
+        sp=search.previous
+        sn=search.next
+        search.previous.next=sn
+        sp=sn.previous
+        
+        del search
+    def search(self,key):
+        v=self.head
+        while v.next!=self.head:
+            if v.key==key:
+                return v
+            v=v.next
+        return None        
         
     def detail(self):
         travel=self.head
@@ -133,6 +142,7 @@ class double_linked_list():
                 break
         print("circle back check end")    
         print("\n")
+        
     def move_after(self,move_node,standard_node):
         find=self.head
         find_standard=self.head
@@ -159,7 +169,7 @@ class double_linked_list():
             find=find.next
         for _ in range(standard_node):
             find_standard=find_standard.next    
-        
+            
         print("move node {} move key {}".format(find.node_number,find.key))
         print("standard_node {} standard key {}".format(find_standard.node_number,find.key))
         fp=find.previous #1번노드
@@ -172,6 +182,8 @@ class double_linked_list():
         find.previous=fsp
         find_standard.previous=find
         find.next=find_standard
+        
+        
         
         
         
@@ -196,12 +208,11 @@ if __name__=="__main__":
     # link.circle_check()
     # link.circle_check_back() #BACK 이상 해결
     # link.move_after(2, 4)
-    link.move_before(0, 5)
-    link.circle_check()
-    link.circle_check_back()
-    
-    
-
-
-    
-    
+    # link.move_before(0, 5)
+    # link.circle_check()
+    # link.circle_check_back()
+    link.delete_Node(2)
+    link.detail()
+    result=link.search(4000)
+    # link.delete_Node(2)
+    link.move_before(3, 5)

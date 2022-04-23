@@ -1,8 +1,10 @@
 #travel
 #G=(v,E)
 #stack
-
-
+import collections
+import random
+import time
+        
 class graph(object):
     def __init__(self,vertex):
         self.vertex=int(vertex)
@@ -52,19 +54,46 @@ class graph(object):
         
     def detail(self):
         print("adj_list={}\n".format(self.adj_list))
-
-    def dfs(self,start): 
-        #재귀호출을 이용한 dfs구현 함수호출이 스택구조 쌓이게된다 재귀함수호출시 현재 실행줄인 함수를 잠시 스택에 보류하고 새로운 함수를 실행한다 이후 새로운함수가 종료될시
-        #함수 호출 스택상단에 존재하는 함수를 진행한다
-        print("visited {}".format(start))
+    
+    def travel(self,start):
+        deque=collections.deque()
         self.visitde[start]=True
-        self.sequence.append(start)       
-        adj_v=self.adj_list[start]
-        for u in adj_v:
-            if not self.visitde[u]:
-                self.dfs(u)
+        current_node=start
+        print("{} visited".format(start))
+        self.sequence.append(start)
+        Finsih=False
         
+        while True:
             
+            if Finsih==True:
+                print('travel end')
+                break
+            temp=sorted(self.adj_list[current_node])
+            
+            deque.extend(temp)
+            try:
+                value=deque.popleft()
+            except:
+                pass
+            while True:
+                if value==None:
+                    print("stack is empty")
+                    Finsih=True
+                    break
+                if self.visitde[value]==False:
+                    current_node=value
+                    print("{} visited".format(current_node))
+                    deque.clear()
+                    self.visitde[value]=True
+                    self.sequence.append(value)
+                    value=None
+                    break
+                if self.visitde[value]==True:
+                    try:
+                        value=deque.popleft()
+                    except:
+                        value=None
+                
     def sequence_node(self):
         for i in self.sequence:
             print("{}->".format(i),end='')   
@@ -98,9 +127,9 @@ if __name__=="__main__":
         
 
     a.detail()
-    a.dfs(0)
+    a.travel(0)
     a.sequence_node()
-    
+
     
     
 

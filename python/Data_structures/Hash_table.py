@@ -23,9 +23,13 @@ class Hash(object):
     def __init__(self):
         self.Hash_table=[None for _ in range(10)] #10칸의 hash table
        
-    def search(self,key): #작성필요 key값을줄시 해당 hash의 value를 리턴한다
+    def search(self,key): #작성필요 key값을줄시 해당 hash의 value(슬롯번호)를 리턴한다
+        find_key=self.find_slot(key)
+        print("save key {} to {}slot".format(key,find_key))
+        
+    def extend_Hash_size(self):
         pass
-    
+        
     def set(self,key,value=None): 
         #key 값이 h에 있으면 value를 update
         #key 값이 H에 없으면 (Key,value)을 insert
@@ -33,8 +37,11 @@ class Hash(object):
             return None
         i=self.find_slot(key)
         value=self.Hash_function(key)
-        if i==False and i!=0:
+        if i==False and i!=0: #작성필요...
+            temp=[None for _ in range(10)]
             print("Hash talbe full Not find key")
+            self.Hash_table.extend(temp)
+            print(self.Hash_table)
             #Hash_table의 용량을 증가시켜야한다 저장할공간이 없기떄문에->만들어야함
             return False #실패
         else:
@@ -47,7 +54,7 @@ class Hash(object):
                 return key   
                 
 
-
+                
 
     def remove(self,key):
         current_slot=self.find_slot(key) #i=현재 key값이 저장되어있는 슬롯번호
@@ -133,8 +140,8 @@ if __name__=="__main__":
     Hash.detail()
     Hash.remove(3)
     Hash.detail()
-    
-    
+    Hash.search(9)
+    Hash.search(22)
     
     
         
