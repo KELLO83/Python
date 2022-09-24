@@ -40,6 +40,8 @@ class  Hash_head:
     def set_hash(self,key,value):
         data=self.hash_value(key)
         back_tracking=self.table[data] #루프의 NEXT의 한단계를 추적한다
+        if self.table[data]==None:  #키값할당하기전에 객체가 DEL연산자로 전부다 삭제되버리면 다시 객체를 재할당해준다
+            self.table[data]=Hash_node()
         roop=self.table[data].next #루프시작을 한노드의 NEXT포인터로 잡는다
         
         while roop is not  None: #HASH_NODE의 NEXT가 NONE이 아닐동안 반복합니다
@@ -77,9 +79,13 @@ class  Hash_head:
                 if back_tracking==None:
                     self.table[data]=self.table[data].next
                     del roop #소멸자 호출 정상작동...??????
+                    self.all_print_elem()
+                    print("")
                     return True
                 back_tracking.next=roop.next #추적의 다음링크를 삭제대상 그다음 링크로 연결시킨다
                 del roop # roop 삭제
+                print("")
+                self.all_print_elem()
                 return True
             back_tracking=roop
             roop=roop.next
@@ -114,16 +120,19 @@ if __name__=="__main__":
     H1=Hash_head(10) #해시용량 defalut 5
     H1.set_hash(10,"test")
     H1.set_hash(10,"simple")
+    H1.set_hash(10,"Data structures")
     H1.serach(10,"test")
     H1.serach(10,"simple")
+    H1.serach(10,"Data structures")
     H1.remove(10,"kello")
+    H1.remove(10,"test")
+    H1.remove(10,"Data structures")
+    H1.remove(10,"simple")
     for i in range(100):
         random_=random.randrange(0,100)
         input_data=random.uniform(0,10)
         H1.set_hash(random_,round(input_data,2))
         
-    H1.remove(10,"test")
-    H1.remove(10,"simple")
     H1.all_print_elem()
 
     
