@@ -87,6 +87,7 @@ class Opening_Hash():
         
     def remove(self,key):
         current_slot=self.find_slot(key)
+        find_slot=current_slot+1
         if self.table[current_slot].key==None:
             print("삭제 대상이 없습니다")
             return True
@@ -95,7 +96,18 @@ class Opening_Hash():
             del self.table[current_slot]
             self.table[current_slot]=Hash_Node()
             return True
-
+        while True: #루프의 범위 find_slot==current_slot
+            if (self.table[find_slot]).key==key:
+                print("삭제를 진행합니다")
+                del self.table[find_slot]
+                return True
+            
+            find_slot=(find_slot+1)%self.capacity  #용량 5 현재 2 이동 3 => 2 슬롯 
+            if(find_slot==current_slot):
+                print("해당 {}값을 가진 슬롯을 발견하지 못했습니다".format(self.find_slot(key)))
+                return False
+            
+            
         
             
             
