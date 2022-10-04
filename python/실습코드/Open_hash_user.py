@@ -38,7 +38,8 @@ class OpendHash:
                 % self.capacity)
         
     def rehash_value(self,key): #한칸씩 이동한다
-        return (self.hash_value(key)+1)%self.capacity 
+        return(self.hash_value(key) + 1) % self.capacity # 0번지에서 3번지로이동하네...????
+
     
     def search_node(self,key):
         hash=self.hash_value(key) #사용자가 입력한 키값을 hash함수를 이용하여 해시값을 hash에 저장한다
@@ -50,7 +51,7 @@ class OpendHash:
             elif target_node.stats==Status.OCCUPIED and target_node.key==key:
                 return target_node #해당 키값을 가진 노드를 리턴합니다
             hash=self.rehash_value(hash) # 해시칸수를 앞으로떙깁니다
-            target_node=hash
+            target_node=self.table[hash]
         
         return None #용량만큼 for문을 돌았지만 찾지못하였습니다
     
@@ -69,7 +70,7 @@ class OpendHash:
         node=self.table[hash]
         for i in range(self.capacity):
             if node.stats==Status.EMPTY or node.stats==Status.DELETED:
-                node=bucket(key,value,Status.OCCUPIED)
+                self.table[hash]=bucket(key,value,Status.OCCUPIED)
                 return True
             hash=self.rehash_value(hash)
             node=self.table[hash] #한칸이동 
@@ -82,9 +83,12 @@ class OpendHash:
         target_node=self.table[hash]
         for i in range(self.capacity):
             if target_node.stats==Status.OCCUPIED and target_node.key==key:
-                print("해당 key값 {}을가진 {} 노드가 삭제됩니다",key,target_node)
+                print("해당 key값 {}을가진 {} 번쨰노드가 삭제됩니다".format(key,i))
+                target_node.key=None
+                target_node.stats=Status.DELETED
                 return True
-            hash=self.rehash_value(hash)
+            hash=self.rehash_value(target_node)
+            target_node=self.table[hash]
         
         return False #해당 KEY값을 가진 노드를 삭제하지못하였습니다
     
@@ -92,13 +96,13 @@ class OpendHash:
         """ 해시테이블에있는 모든원소를 출력합니다 """
         for i in range(self.capacity):
             if self.table[i].stats==Status.OCCUPIED:
-                print("{}번째 노드에 value {} 가 저장 key {} 저장",i,self.table[i].value,self.table.key)
+                print("{}번째 노드에 value {} 가 저장 key {} 저장".format(i,self.table[i].value,self.table[i].key))
                 continue
             elif self.table[i].stats==Status.EMPTY:
-                print("{}번쨰 노드는 empty상태입니다",self.table[i])
+                print("{}번쨰 노드는 empty상태입니다".format(self.table[i]))
                 continue
             elif self.table[i].stats==Status.DELETED:
-                print("{} 번쨰 노드는 삭제유지상태입니다",self.table[i])
+                print("{} 번쨰 노드는 삭제유지상태입니다".format(i))
                 continue
             
             
@@ -106,5 +110,13 @@ class OpendHash:
 if __name__=="__main__":
     H1=OpendHash(5)
     H1.add(15,"kello")
+    H1.add(25,"JELLO")
+    H1.remove(25)
+    H1.add(35,"KILO")
+    H1.add(45,"dsban")
+    H1.add(55,"FOX")
+    H1.add(65,"july")
+    H1.remove(25)
+    H1.dump()
     print("DEBUG")
             
