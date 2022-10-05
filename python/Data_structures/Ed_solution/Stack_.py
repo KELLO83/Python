@@ -93,10 +93,8 @@ class FixedStack(object):
 def select_Menu(Menu):
     s=["({}) {}".format(m.name,m.value) for m in Menu]
     print(s)
-    user_input=int(input("사용할 기능을 숫자로 입력하세요"))
-    return user_input
 
-           
+
 if __name__=="__main__":
     stack=FixedStack(10)  
     stack.push(5)
@@ -106,8 +104,11 @@ if __name__=="__main__":
     stack.dump()
     stack.clear()
     stack.stack_status()
-    # Menu=Enum('Menu',['푸시','팝','피크','검색','덤프',,'클리어','종료'])
-    # while True:
+    Menu=Enum('Menu',['푸시','팝','피크','검색','덤프','클리어','종료'])
+ 
+        
+        
+# while True:
     #     print("현재 데이터 개수:{}/{}".format(stack.point+1,stack.capacity))
     #     user=select_Menu(Menu)
     #     if user==Menu.푸시:

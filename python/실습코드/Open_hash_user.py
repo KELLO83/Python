@@ -64,6 +64,7 @@ class OpendHash:
     
     def add(self,key,value):
         """key와 value를 받아서 노드에 추가합니다"""
+        
         if self.search(key) is not None:
             return False #self.search 에서 return이None이 아닐경우 똑같은 key값을가진노드가 존재한다는것
         hash=self.hash_value(key)
@@ -86,8 +87,9 @@ class OpendHash:
                 print("해당 key값 {}을가진 {} 번쨰노드가 삭제됩니다".format(key,i))
                 target_node.key=None
                 target_node.stats=Status.DELETED
+                target_node.value=None
                 return True
-            hash=self.rehash_value(target_node)
+            hash=self.rehash_value(hash)
             target_node=self.table[hash]
         
         return False #해당 KEY값을 가진 노드를 삭제하지못하였습니다
