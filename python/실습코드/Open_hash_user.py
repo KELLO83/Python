@@ -113,12 +113,3 @@ if __name__=="__main__":
     H1=OpendHash(5)
     H1.add(15,"kello")
     H1.add(25,"JELLO")
-    H1.remove(25)
-    H1.add(35,"KILO")
-    H1.add(45,"dsban")
-    H1.add(55,"FOX")
-    H1.add(65,"july")
-    H1.remove(25)
-    H1.dump()
-    print("DEBUG")
-            
