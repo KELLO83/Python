@@ -88,7 +88,7 @@ class FixedStack(object):
             raise self.Empty
         
         for i in range(self.point,-1,-1):
-            buffer.append(i)
+            buffer.append(self.stk[i])
     
         print("dump {}".format(buffer))
         return buffer        
@@ -108,6 +108,7 @@ if __name__=="__main__":
     stack.push(4)
     stack.push(4)
     stack.pop()
+    stack.dump()
     stack.peek()
     stack.count(4)
     stack.find_location(4)
