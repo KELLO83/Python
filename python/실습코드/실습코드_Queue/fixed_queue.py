@@ -57,7 +57,7 @@ class FixedQueue:
         self.front += 1 #dequeue를 함으로써 front위치를 그다음 idx번호로 이동함한다
         self.no -= 1 #원소를 하나꺼냄으로써 원소으 갯수를 한개줄인다
         if self.front == self.capacity: #circle queue로써 front가 용량이랑 같아질경우  front위치를 0으로 재조정한다
-            self.front = 0
+            self.front = 0 #위치조정 
         return x
 
 # Do it! 실습 4-3 [D]
