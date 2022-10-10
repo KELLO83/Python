@@ -47,6 +47,37 @@ class OpendHash:
                 return True
         return False #삽입실패
     
+    def remove(self,key):
+        data=self.Hash_Key(key)
+        if key==self.Hash_table[data].key:
+            self.Hash_table[data].Status=Status.DELETED
+            self.Hash_table[data].key=None
+            self.Hash_table[data].value=None
+            return True
+        
+        target=data
+        for i in range(self.capaicty):
+            target=self.Hash_Key(target+1)%self.capaicty
+            if key==self.Hash_table[target].key:
+                self.Hash_table[target].Status=Status.DELETED
+                self.Hash_table[target].key=None
+                self.Hash_table[target].value=None
+                return True
+            
+    def search(self,key):
+        data=self.Hash_Key(key)
+        if self.Hash_table[data].Status==Status.EMPTY:
+            print("key {} not exist".format(key))
+            return False
+        target=data
+        for i in range(self.capaicty):
+            target=self.Hash_Key(target+1)%self.capaicty
+            if self.Hash_table[target].key==key:
+                print("해당 key {}는 index {}에 존재합니다".format(key,target))
+                return self.Hash_table[target]
+        
+        print("key {} not exist".format(key))
+        return False
     
     def DEBUG(self):
         """해시테이블의 갯수와 원소 상태를 조사합니다"""
@@ -61,6 +92,9 @@ if __name__ =="__main__":
     H1=OpendHash()
     H1.add(15,"kello")
     H1.add(25,"JELLO")
-    
-        
+    H1.add(35,"KIAST")
+    H1.DEBUG()
+    H1.remove(25)
+    H1.DEBUG()
+    H1.search(35)  
     
