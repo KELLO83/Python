@@ -1,17 +1,14 @@
-class Point():
-    def __init__(self,x,y) -> None:
-        self.__x=x
-        self.__y=y
-    def __str__(self):
-        return f"({self.__x},{self.__y})"
-    def __eq__(self, object: object) -> bool:
-        if self.__x==object.__x and self.__y==object.__y:
-            return True
-        return False
-p=Point(1,2)
-print(p)
-k=Point(1,3)
-t=Point(1,2)
-
-print(p==k)
-print(p==t)
+count=0
+for n in range(2,7):
+    for i in range(2,n):
+        print("for실행=> i:{} n:{}".format(i,n))
+        count+=1
+        if n%i==0:
+            break
+        print("for실행 (break후)=> i:{} n:{}".format(i,n))
+        print("------------------------")
+    else:
+        print("else 실행=> i:{} n:{}".format(i,n))
+        print(n)
+        print("나눗셈실행횟수 : {}".format(count))
+        print("======================")
