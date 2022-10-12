@@ -15,7 +15,7 @@ print(list09)
 
 #튜플은 원소를 한개씩만 저장한다
 tuple01=()
-tuple02=1,
+tuple02=1, #1, tpye tuple 쉼표제거시 type int 
 tuple03=(1,)
 tuple04=1,2,3
 tuple05=(1,2,3)

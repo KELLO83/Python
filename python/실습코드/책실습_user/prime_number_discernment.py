@@ -29,7 +29,7 @@ def improve_first():
             counter+=1
             if n%prime[i]==0:
                 break #소수가아니므로 종료합니다
-        else:
+        else:# else를 출력한다는것은 n을 지금까지 저장된 소수로 모두 나누었더니 n%i!=0 즉 n이 소수라는것이다
             prime[ptr]=n #새로운소수를 배열에 저장
             ptr+=1 #소수갯수 증가
 """
@@ -54,21 +54,33 @@ def imporver_second():
     
     for n in range(5,1001,2): #4는소수가아니므로 5부터시작하면 홀수단위만 체크한다
         i=1
-        while prime[i]*prime[i]<=n: #
-            counter+=2
-            if n%prime[i]==0:
-                break
+        while prime[i]*prime[i]<=n: #소수의 제곱근 어떤수 x는 n*m으로 된다 이떄 중복검사를 하지않기위해서
+            # n*m m*n 이 중간지점을 구한다
+            counter+=2 #중복검사이므로 +1이아닌 +2를한다
+            if n%prime[i]==0: #나누어떨어지면 소수가아니다
+                break #증가된 n for증가
             i+=1
-        else:
-            prime[ptr]=n
-            ptr+=1
-            counter+=1
+        else: #N을 전부 저장된소수로 나누었을떄 !=0이라면 소수이다 
+            prime[ptr]=n #소수버퍼에 소수추가
+            ptr+=1 #소수갯수 증가
+            counter+=1 #나눗셈횟수 증가
             
     for i in range(ptr):
         print(prime[i])
-    print("곱셈과 나눗셈을 실행한 횟수{}".format(counter))            
-         
+        print("곱셈과 나눗셈을 실행한 횟수{}".format(counter))            
+        
 
+""" 17이 소수인지 판별한다
+이미저장된 소수 버퍼 2 3 5 7 11 13 
+소수카운터 6
+1*17
+2*8.5
+3*5.66
+5*3.4 =>N이 5가될떄 M보다 커진다 그이후는 중복검사할필요없다 즉 N*M이 N의 제곱보다 작거나같을떄까만 roop
+7*2.24
+11*1.54
+13*1.07
+"""            
 if __name__=="__main__":
     orgin()
     improve_first()

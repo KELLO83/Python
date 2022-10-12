@@ -1,4 +1,5 @@
 count=0
+i=0
 for n in range(2,7):
     for i in range(2,n):
         print("for실행=> i:{} n:{}".format(i,n))

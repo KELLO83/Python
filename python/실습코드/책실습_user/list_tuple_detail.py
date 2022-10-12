@@ -1,4 +1,4 @@
-n1=list('abc') #햇갈림
+n1=list('abc') #햇갈림 abc를 튜플로본다 [('abc')] 일시 한곳에
 n2=list([1,2,3])
 n3=list((1,2,3))
 n4='a','b','c' #튜플로 생성된다 햇갈림
@@ -16,6 +16,6 @@ x,y,z=data #리스트로싼것을 언패킹 중요함
 print(x,y,z)
 print(type(x)) #type int
 
-m,n,t=data_2 #튜플을 언패킹하였더니 str type을 가지게도었다
+m,n,t=data_2 #튜플을 언패킹하였더니 type str
 print(m,n,t)
 print(type(m)) #type str
