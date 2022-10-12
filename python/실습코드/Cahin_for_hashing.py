@@ -42,6 +42,7 @@ class  Hash_head:
         back_tracking=self.table[data] #루프의 NEXT의 한단계를 추적한다
         if self.table[data]==None:  #키값할당하기전에 객체가 DEL연산자로 전부다 삭제되버리면 다시 객체를 재할당해준다
             self.table[data]=Hash_node()
+            
         roop=self.table[data].next #루프시작을 한노드의 NEXT포인터로 잡는다
         
         while roop is not  None: #HASH_NODE의 NEXT가 NONE이 아닐동안 반복합니다
@@ -50,7 +51,8 @@ class  Hash_head:
         if self.table[data].key ==None: #해당버킷에 링크드리스트가 존재하는가?
             self.table[data].set_(key,value)
         else:
-            back_tracking.next=Hash_node(key,value) 
+            back_tracking.next=Hash_node(key,value)
+    
             
     def serach(self,key,value)->any:  #사용자가 key값을 입력하시 value를 return 한다
         data=self.hash_value(key)

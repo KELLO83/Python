@@ -68,8 +68,6 @@ def imporver_second():
     for i in range(ptr):
         print(prime[i])
         print("곱셈과 나눗셈을 실행한 횟수{}".format(counter))            
-        
-
 """ 17이 소수인지 판별한다
 이미저장된 소수 버퍼 2 3 5 7 11 13 
 소수카운터 6
@@ -81,7 +79,56 @@ def imporver_second():
 11*1.54
 13*1.07
 """            
+def user_improve():
+    count=0
+    buffer=list()
+    buffer_count=0
+    buffer.append(2)
+    buffer_count+=1
+    buffer.append(3)
+    buffer_count+=1
+    
+    for i in range(5,51,2):
+        for j in range(buffer_count):
+            count+=1
+            if i%buffer[j]==0:
+                break #소수가아니다 그다음 숫자를검사한다
+        else : #for문을 다돌았다면 그수는 소수이다
+            print(i,end=" ") 
+            buffer.append(i)
+            buffer_count+=1
+        
+        
+    print()
+    
+def user_sqrt_imporve():
+    count=0
+    buffer=list()
+    buffer_count=0
+    buffer.append(2)
+    buffer.append(3)
+    buffer_count+=2
+
+    for i in range(5,51,2):
+        j=0
+        while buffer[j]*buffer[j]<=i:
+            count+=2
+            if i%buffer[j]==0:
+                break #소수가아니다
+            j+=1
+        
+        else:
+            print(i,end=" ")
+            buffer.append(i)
+            buffer_count+=1
+            
+        
+
+
+        
 if __name__=="__main__":
-    orgin()
-    improve_first()
-    imporver_second()
+    # orgin()
+    # improve_first()
+    # imporver_second()
+    # user_improve()
+    user_sqrt_imporve()
