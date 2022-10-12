@@ -63,6 +63,7 @@ class FixedStack(object):
         for i in range(self.point+1): 
             self.stk[i]=None
         self.point=-1
+        print("clear stack")
         
     def count(self,value) ->int: #스택의 동일원소의 개수를 확인한다
         count=0

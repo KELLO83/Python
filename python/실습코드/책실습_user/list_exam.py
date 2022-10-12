@@ -1,6 +1,6 @@
 list03=['A','B','C']
 list05=list('ABC')
-list06=list(['ABC']) #이것만 ['ABC']만들어진다
+list06=list(['ABC'])  #이것만 한곳에 ABC
 list07=list(['A','B','C'])
 list08=list(('ABC'))
 list09=list(('A','B','C'))
@@ -21,7 +21,8 @@ tuple04=1,2,3
 tuple05=(1,2,3)
 tuple06='A','B','C'
 tuple07=tuple('KELLO')
-tuple08='ABC', #tuple이없을시 abc를 한곳에 담는다
+tuple08='ABC', 
+#tuple이없을시 abc를 한곳에 담는다
  
 print(tuple01)
 print(tuple02)
