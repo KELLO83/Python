@@ -61,7 +61,3 @@ print()
 data=np.random.randn(3,3) #가우시안 정규분포 평균0 분산이 1인 3행3열 데이터생성
 print(data)
 print()
-
-
-
-

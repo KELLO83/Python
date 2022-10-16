@@ -29,7 +29,7 @@ f=np.random.randint(10,size=(2,2)) #[start,end) 열린구간부터 닫힌구간�
 print(f)
 print()
 
-g=np.random.rand(2,3) #균등분포를 갖는 난수를 발생시킨다
+g=np.random.rand(2,3) #균등분포를 갖는 난수를 발생시킨다--9
 print(g)
 print()
 
@@ -38,4 +38,6 @@ print(h)
 print()
 
 # rand randn 차이점 꼭 인지하기
+
+
 
