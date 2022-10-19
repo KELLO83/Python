@@ -31,3 +31,6 @@ def get_score(name,**kwargs):
         print("수강한과목은 {}입니다".format(i))
 
 get_score('kello',en=80,ko=30,math=100)
+
+
+

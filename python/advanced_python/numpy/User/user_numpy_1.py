@@ -1,11 +1,12 @@
 #numpy 요소간의 연산
 
 import numpy as np
-
+import random
 
 a=np.arange(1,11,1).reshape(2,5)
 b=np.arange(11,21).reshape(5,2)
-
+c=np.random.randint(1,10,size=10)
+print(c)
 
 
 # c=a+b
