@@ -16,5 +16,5 @@ module_buffer=[]
 for i in range(10):
     tmp=data[i]%42
     module_buffer.append(tmp)
-res=set(module_buffer)
+res=set(module_buffer)#중복을 허락하지않는다 핵심코드
 print(len(res))
