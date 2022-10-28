@@ -10,13 +10,20 @@
 출력
 첫째 줄에는 A × B × C의 결과에 0 이 몇 번 쓰였는지 출력한다. 마찬가지로 둘째 줄부터 열 번째 줄까지 A × B × C의 결과에 1부터 9까지의 숫자가 각각 몇 번 쓰였는지 차례로 한 줄에 하나씩 출력한다.
 """
+# 1트 1부터 9까지의 숫자가 각각 몇 번 쓰였는지 차례로 한 줄에 하나씩 출력한다.
+# 2트
 
-a=int(input())
+a=int(input()) #string int
 b=int(input())
 c=int(input())
-res=a*b*c
-res_str=str(res)
-buffer=[0]*len(res_str)
-for i in range(1,10):
-    count=res_str.count('i')
-    print(count)
+
+res=a*b*c 
+#1트 틀린지점 len(str(res)) ->0~9 10 buffer=[0,0,0,0,0,0,0,0]
+for i in range(10): #2트 틀린지점 range(len(str(res)))
+    data=str(res) #str
+    print(data.count(str(i))) #data.count('0') -> 3 str(0~9)
+#0~9 문자열에서 개숫를세어서 buffer에저장합니다
+# for i in range(10):
+#     print(buffer[i]) #기본 pring 자동 줄바꿈
+    
+    

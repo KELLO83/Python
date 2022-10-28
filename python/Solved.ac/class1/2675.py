@@ -11,16 +11,23 @@ QR Code "alphanumeric" 문자는 0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ\$%*+-./: �
 각 테스트 케이스에 대해 P를 출력한다.
 """
 
-count=int(input())
-buffer=list()
+count=int(input()) #
+buffer=list() # [] , 
+
 for i in range(count):
-    roop,string=map(str,input().split())
-    roop=int(roop)
-    count=0
-    for j in range(len(string)): #차음시도 range(roop) ->len(string) 수정
-        for k in range(roop):
-            buffer.append(string[j])
-    print(''.join(buffer))
-    buffer.clear()
+    roop,string=map(str,input().split()) # 3 5 str 3 5 map객체로  roop=3 string="문자열s"   
+    roop=int(roop) #'3' int 3 roop=3 string=ABC
+    for j in range(len(string)):        
+        print(roop*string[j],end="") 
+    print()
+    # for j in range(len(string)): #차음시도 range(roop) ->len(string) 수정 rarnge(roop) ABC ROOP=LEN(STR)  ABCD ROOP=!LEN(STR)
+    #     for k in range(roop):
+    #         buffer.append(string[j]) #ABC 3번반복 AAA BBB CCC
+    #바깥루프는 문자열의 길이만큼 
+    #안쪽루프는 MAP으로받은 ROOP만 반복문을
+    # print(''.join(buffer)) #STRING LIST STRING STR.JOIN(list) ->str AAA BBB CCC
+    # buffer.clear() #list초기화
+    
+
 
 
