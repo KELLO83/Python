@@ -12,10 +12,9 @@ print("heapify수행 횟수",len(data)//2)
 #1단계 전체트리를 MAX_Heap 구조로 변경을한다
 
 
-for i in range(1,len(data)//2):
+for i in range(1,(len(data)-1)//2):
     target = i
     target_child = (target * 2) + 1
-    target_parent = (target-1) // 2
     #일단 자식노드의 값과 비교하여 자리스왑여부를정한다
     if ( data[target_child] < data[target_child+1]):
          target_child = target_child + 1
@@ -31,15 +30,26 @@ for i in range(1,len(data)//2):
         
 print("MAX_HAAP 구성완료후",data) 
 
+#[7, 8, 6, 3, 5, 5, 1, 6, 9]
 #2단계 크기를줄여가면서 힙정렬을 실시한다
-
 for i in range(len(data)-1,-1,-1):
     data[0] , data[i] = data[i] ,data[0]
     root = 0
     target = 1
     
     while 2 * root +1 < i : #자식이 존재한다면?
-        pass          
+        target_child = root * 2 +1
+        if (data[target_child] < data[target_child+1] and target_child < i-1):
+            target_child+=1
+            
+        if (data[target_child]>data[root]):
+            data[target_child] , data[root] = data[root] , data[target_child]
+        root = target_child
+            
+        
+
+
+print(data)
         
 
 
