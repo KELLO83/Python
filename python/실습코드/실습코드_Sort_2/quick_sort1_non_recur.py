@@ -21,8 +21,7 @@ def qsort(a: MutableSequence, left: int, right: int) -> None:
                 pl += 1
                 pr -= 1
 
-        if left < pr: 
-            range.push((left, pr))    # 왼쪽 그룹의 커서를 저장
+        if left < pr: range.push((left, pr))    # 왼쪽 그룹의 커서를 저장
         if pl < right: range.push((pl, right))  # 오른쪽 그룹의 커서를 저장
 
 def quick_sort(a: MutableSequence) -> None:

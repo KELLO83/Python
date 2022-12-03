@@ -1,6 +1,5 @@
-# [Do it! 실습 6-15] 병합 정렬 알고리즘 구현하기
-
-from typing import MutableSequence
+import random
+from typing import *
 
 def merge_sort(a: MutableSequence) -> None:
     """병합 정렬"""
@@ -16,21 +15,22 @@ def merge_sort(a: MutableSequence) -> None:
             p = j = 0
             i = k = left
 
-            while i <= center:
+            while i <= center: # 임시배열에다가 a배열의 앞부분을 복사한다
                  buff[p] = a[i]
                  p += 1
                  i += 1
-
-            while i <= right and j < p:
-                 if buff[j] <= a[i]:
-                     a[k] = buff[j]
+            # 완료후 i,p는 배열의 중간지점까지왔다
+            
+            while i <= right and j < p: # a[i]의 후반부가 배열의끝지점올떄까지 이면서 j=0부터 임시배열 buff[j]의 j포인터가 buff의 끝지점올떄까지
+                 if buff[j] <= a[i]: # 임시배열의 원소의크기가 작습니다
+                     a[k] = buff[j] # k=0부터 대입한다
                      j += 1
-                 else:
+                 else: # 원본배열의 후반부가 작습니다
                      a[k] = a[i]
                      i += 1
                  k += 1
 
-            while j < p:
+            while j < p: # 임시배열의 남은부분을 넣습니다
                 a[k] = buff[j]
                 k += 1
                 j += 1
@@ -40,16 +40,8 @@ def merge_sort(a: MutableSequence) -> None:
     _merge_sort(a, 0, n - 1)    # 배열 전체를 병합 정렬
     del buff                    # 작업용 배열을 소멸
 
-if __name__ == '__main__':
-    print('병합 정렬을 수행합니다')
-    num = int(input('원소 수를 입력하세요.: '))
-    x = [None] * num    # 원소 수가 num인 배열을 생성
 
-    for i in range(num):
-        x[i] = int(input(f'x[{i}]: '))
-
-    merge_sort(x)       # 배열 x를 병합 정렬
-
-    print('오름차순으로 정렬했습니다.')
-    for i in range(num):
-        print(f'x[{i}] = {x[i]}')
+if __name__ =="__mmain__":
+    data=[random.randrange(20) for _ in range(10)]
+    print("정렬전data===>",data)
+    merge_sort(data)   

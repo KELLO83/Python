@@ -4,22 +4,14 @@ from typing import MutableSequence
 
 def fsort(a: MutableSequence, max: int) -> None:
     """도수 정렬(배열 원솟값은 0 이상 max 이하)"""
-    n = len(a)       # 배열의 길이 
-    f = [0] * (max + 1)  # 누적도수 분포표 카운팅 배열
-    b = [0] * n         #  작업용 배열
+    n = len(a)           # 정렬할 배열 a
+    f = [0] * (max + 1)  # 누적 도수 분포표 배열 f
+    b = [0] * n          # 작업용 배열 b
 
-    for i in range(n):       
-        f[a[i]] += 1 # a[i]의 원소값을 f[원소값] idx 번호에서 하나증가시킨다               
-        
-    for i in range(1, max + 1):     
-        f[i] += f[i - 1]  # 누적도수 분포포 구성... 앞의idx의 value들을 합산해간다       
-       
-    for i in range(n - 1, -1, -1):# 스캔방향 top -> bottom
-        f[a[i]] -= 1 
-        b[f[a[i]]] = a[i]  #작업용배열에다가 원본배열의 원소를 삽입한다
-         
-    for i in range(n):              
-        a[i] = b[i]                    
+    for i in range(n):              f[a[i]] += 1                     # [1단계]
+    for i in range(1, max + 1):     f[i] += f[i - 1]                 # [2단계]
+    for i in range(n - 1, -1, -1):  f[a[i]] -= 1; b[f[a[i]]] = a[i]  # [3단계]
+    for i in range(n):              a[i] = b[i]                      # [4단계]
 
 def counting_sort(a: MutableSequence) -> None:
     """도수 정렬"""

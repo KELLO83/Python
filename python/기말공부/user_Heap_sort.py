@@ -1,10 +1,10 @@
-data = [7,6,5,8,3,5,9,1,6]
-
+import random
+data = [ random.randrange(20)  for i in range(10)]
+print("초기생성",data)
 # 방향 윗방향
 # 1단계 MAX_Heap 구성하기
 # 세부사항
 #   일단 주목노드와 주목노드의 자식과 값을 비교여부를 정한다
-print(data)
 for i in range((len(data)-1)//2,-1,-1):
     focus_node = i # 주목노드
     focus_node_c = ( focus_node * 2 ) +1 #주목노드의 오른쪽 자식 포커스
@@ -13,9 +13,10 @@ for i in range((len(data)-1)//2,-1,-1):
         pass # 자식이존재하지않으므로 자식간의 대소관계를 비교하지않는다
     
     else: #자식이 적어도 1개이상 존재한다
-        if data[focus_node_c] < data[focus_node_c+1] and focus_node_c+1 <= len(data): # 자식노드의 왼쪽 오른쪽의 대소관게를 비교하면 오른쪽이 존재하는지도 확인한다
-            focus_node_c +=1 
-             
+        if focus_node_c+1 < len(data):
+            if data[focus_node_c] < data[focus_node_c+1] : # 자식노드의 왼쪽 오른쪽의 대소관게를 비교하면 오른쪽이 존재하는지도 확인한다
+                focus_node_c +=1 
+                
         if data[focus_node_c] > data[focus_node]: #  주목노드의 자식과 주목노드의 대소관계를 비교한다
             data[focus_node_c] , data[focus_node] = data[focus_node] , data[focus_node_c]
 
@@ -25,7 +26,7 @@ for i in range((len(data)-1)//2,-1,-1):
             data[focus_node] , data[focus_node_p] = data[focus_node_p], data[focus_node]
             
         focus_node = focus_node_p
-print(data)
+print("MAX_HEAP구성",data)
 
 #2단계 정렬시키기
 
