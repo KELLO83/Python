@@ -4,13 +4,13 @@ def sort(a):
     point = end # 자리교환을 마지막으로 마친곳
     while start < end: # start == end 일경우 정렬이 완료되었다
         for j in range(end,start,-1): # 역방향 진행
-            if a[j] < a[j-1]:
+            if a[j] < a[j-1]: # 앞쪽이 값이 더클경우 뒤쪽으로 보낸다
                 a[j] , a[j-1] = a[j-1] ,a[j]
                 point = j 
             start = point  # last는 위에 for문을 실행하면서 마지막으로 원소를 바꾼자리를 기억한다
             
         for i in range(start,end): #정방향 진행
-            if a[i] > a[i+1]:
+            if a[i] > a[i+1]: # # 뒤쪽이 작은원소라면 앞쪽으로 이동한다
                 a[i] , a[i+1] = a[i+1] ,a[i]
                 point = i
             end = point
