@@ -58,7 +58,7 @@ class BinarySearchTree:
             
         
         if self.root is None: # 초기노드가 존재 x일시
-            self.root = Node(key,value,None,None) # rigth left None
+            self.root = Node(key,value,None,None) # rigth left None 
             return True # 노드삽입완료
         else: #노드가 적어도 루트노드이상 존재한다 
             return add_node(self.root,key,value)

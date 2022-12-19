@@ -42,7 +42,7 @@ class BinarySearchTree:
         def add_node(node:Node,key:int,value:int) ->bool:
             """ 적어도 루트노드이상 존재할떄 call되는 함수"""
             if key == node.key: # 주목노드가 삽입할려는 노드key값인경우 중복적으로 삽입이 불가하므로 삽입 fail
-                return False
+                return False # 이진검색트리는 중복되는key값을 삽입이 불가하다
             
             elif key < node.key: # 삽입할려는key값이 주목노드의 key값보다 작을경우 왼쪽으로 
                 if node.left is None: # 왼쪽으로 진행한다 주목노드의 left가 None이라면 왼쪽자식이 없으므로 삽입한다
@@ -50,15 +50,15 @@ class BinarySearchTree:
                 else: # 주목노드의 왼쪽자식이 존재하므로 왼쪽으로 또이동해야함 
                     add_node(node.left,key,value) # 인수로 주목노드는 현재 주목노드의 왼쪽을준다 재귀적으로 호출하며 자식의 왼쪽이 Empty인경우까지 계속 재귀를 진행한다
             elif key >node.key: # 삽입할려는 key값이 주목노드의 key값보다 큰경우 오른쪽자식으로 추가를해야한다
-                if node.right is None:
-                    node. right = Node(key,value,None,None)
+                if node.right is None: # 주목노드의 오른쪽이비었다면 오른쪽에다가삽입한다
+                    node. right = Node(key,value,None,None) # 오른쪽은 아직 자식이없으므로 None None이다
                 else:
                     add_node(node.right,key,value)
                 return True # 성공적으로 key값의 노드를 삽입하였습니다
             
         
         if self.root is None: # 초기노드가 존재 x일시
-            self.root = Node(key,value,None,None) # rigth left None
+            self.root = Node(key,value,None,None) # rigth left None  #루트에다가 바로삽입한다 루트가없다 노드가없으므로
             return True # 노드삽입완료
         else: #노드가 적어도 루트노드이상 존재한다 
             return add_node(self.root,key,value)
@@ -76,7 +76,7 @@ class BinarySearchTree:
             if key == p.key:   
                 break          
             else:
-                parent = p            
+                parent = p        # parente는 ㅌ
                 if key < p.key:     # 현재노드 p에서 찾고자하는 key값을가진노드가 작을경우 왼쪽으로 이동합니다
                     is_left_child = True   # 왼쪽 서브트리로 이동하였습니다 
                     p = p.left            
@@ -99,19 +99,21 @@ class BinarySearchTree:
                 parent.left = p.left     #부모의 왼쪽과 삭제노드 p의자식인 왼쪽을 이어줍니다
             else: # 오른쪽 서브트리에서 삭제노드 p를 찾았다
                 parent.right = p.left  #부모의 오른쪽과 삭제노드 p의자식의 왼쪽을 이어줍니다
+                
         else:    # 삭제노드p가 왼 오른 자식을 전부가졌을떄
             parent = p
-            left = p.left               
-            is_left_child = True #초기시작시 왼쪽으로 이동하였으므로 True입니다
+            left = p.left     #일단 왼쪽으로 이동
+            is_left_child = True #초기시작시 왼쪽으로 이동하였으므로 True입니다 
             while left.right is not None: # p노드다음으로 key값이 가장큰 Node를 찾는과정
                 parent = left
-                left = left.right
+                left = left.right # 오른쪽으로가야 p노드다음 가장큰값을 찾을수있다..    
                 is_left_child = False #계속 오른쪽 서브트리로 이동하므로 False입니다
 
             p.key = left.key     #덮어쓰기를 진행합니다
             p.value = left.value       
+            
             if is_left_child: #왼쪽서브트리로 이동
-                parent.left = left.left   
+                parent.left = left.left   # left.left만 존재한다 왜냐하면 left.right is not None 을돌았으니깐 right가없는 마지막 노드까지 위치한다 
             else:# 오른쪽서브트리로 이동
                 parent.right = left.left   
         return True
@@ -128,6 +130,7 @@ class BinarySearchTree:
         
     def min_key(self):
         """ 노드의 가장 작은키"""
+        # 노드의 가장작은키는 루트로부터 맨왼쪽이다
         if self.root is None: # 노드가 한개도존재하지않는다
             return None
         p = self.root # 노드가 적어도 한개이상존재하고 p를 루트노드 시작점으로 잡는다
@@ -137,6 +140,7 @@ class BinarySearchTree:
     
     def max_key(self):
         """ 노드의 가장큰 key값"""
+        #노드의 가장큰값은 루트로부터 가장 오른쪽이다
         if self.root is None: # 노드갛 한개라도 존재하지않는다
             return None 
         p = self.root # 노드가 적어도 한개이상 존재하므로 주목노드를 일단 root노드로 잡는다
